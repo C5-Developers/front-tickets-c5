@@ -1,6 +1,5 @@
 import React from 'react'
-import { LoginForm } from '../../../components/Admin'
-// import { useAuth } from '../../../hooks'
+import { LoginForm } from '../../../components/Base'
 
 import './LoginAdmin.scss'
 

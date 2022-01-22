@@ -28,16 +28,20 @@ function MenuLeft(props){
             </Menu.Item>
 
             <Menu.Item as={Link} to={"/admin/tickets"} active={pathname === "/admin/tickets"}>
-                <Icon name='ticket alternate' /> Tickets
+                <Icon name='ticket alternate' /> Tickets - Admin
             </Menu.Item>
 
-            <Menu.Item as={Link} to={"/admin/tickets-history"} active={pathname === "/admin/tickets-history"}>
+            <Menu.Item as={Link} to={"/tickets"} active={pathname === "/admin/tickets"}>
+                <Icon name='ticket alternate' /> Tickets - Client
+            </Menu.Item>
+
+            {/* <Menu.Item as={Link} to={"/admin/tickets-history"} active={pathname === "/admin/tickets-history"}>
                 <Icon name='history' /> Historial
             </Menu.Item>
 
             <Menu.Item as={Link} to={"/admin/catalogs"} active={pathname === "/admin/catalogs"}>
                 <Icon name='list' /> Catalogos
-            </Menu.Item>
+            </Menu.Item> */}
 
             {/* Si es parte del staff(administrador) Se muestra el path Usuarios */}
             { auth.me?.is_staff && (
