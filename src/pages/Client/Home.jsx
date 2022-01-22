@@ -5,7 +5,7 @@ export function Home() {
 
     return (
         <div>
-            <p>Home Page</p>
+            <p>Home Page Client</p>
             
         </div>
     )
