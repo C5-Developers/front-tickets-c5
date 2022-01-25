@@ -1,7 +1,9 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify'
 import { Navigation } from './routes';
-import { AuthProvider } from "./context"
+import { AuthProvider } from "./context";
+
+import './app.scss'
 
 function App() {
   return (

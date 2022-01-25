@@ -6,6 +6,7 @@ import { TableTicket, AddEditTicket } from '../../components/Client/';
 import { ModalBasic } from '../../components/Base/'
 import { useTicket } from '../../hooks/';
 
+import { toast } from 'react-toastify'
 
 
 export function TicketsClient() {
@@ -16,7 +17,7 @@ export function TicketsClient() {
   const [refetch, setRefetch] = useState(false);
 
 
-  const { loading, tickets, getTickets } = useTicket();
+  const { loading, tickets, getTickets, deleteTicket } = useTicket();
 
   useEffect(()=>getTickets(),[refetch]);
 
@@ -30,6 +31,31 @@ export function TicketsClient() {
     openCloseModal();
   }
 
+  const updateTicket = (data) => {
+    setTitleModal('Editar Ticket')
+    setContentModal(<AddEditTicket ticket={ data } onClose={openCloseModal} onRefetch={onRefetch} />)
+    openCloseModal();
+    console.log(data);
+  }
+
+  const onDeleteTicket = async (data) => {
+    const result = window.confirm(`Eliminar ticket ${data.id}`);
+    if(result){
+      try {
+        
+        await deleteTicket(data.id);
+        onRefetch()
+
+        toast.success('Ticket Eliminado con Exito!');
+        
+      } catch (error) {
+
+        toast.error(error.message);
+
+      }
+    }
+  }
+
   // console.log(tickets);
   return <>
         <HeaderPage title="Tickets - Client" btnTitle='Nuevo Ticket' btnClick={ addTicket } />
@@ -37,8 +63,18 @@ export function TicketsClient() {
           <Loader active inline='centered'>
             Cargando...
           </Loader>
-        ): (<TableTicket tickets={ tickets } />
+        ) : (
+        <TableTicket 
+          tickets={ tickets } 
+          updateTicket={ updateTicket } 
+          onDeleteTicket={ onDeleteTicket }
+          />
         )}
-        <ModalBasic show={showModal} onClose={openCloseModal} title={titleModal} children={contentModal} />
+        <ModalBasic 
+          show={showModal} 
+          onClose={openCloseModal} 
+          title={titleModal} 
+          children={contentModal} 
+        />
   </>;
 }

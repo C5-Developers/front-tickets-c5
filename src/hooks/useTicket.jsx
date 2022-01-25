@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { useAuth } from '.';
-import {getTicketsApi, addTicketApi} from '../api/ticket';
+import {getTicketsApi, addTicketApi, updateTicketApi, deleteTicketApi} from '../api/ticket';
 
 export function useTicket(){
 
@@ -35,6 +35,31 @@ export function useTicket(){
 
     }
 
+    const updateTicket = async (id,data) => {
+
+        try {
+            setLoading(true);
+            await updateTicketApi(id, data, auth.token );
+            setLoading(false);
+            
+        } catch (error) {
+            setLoading(false);
+            setError(error);
+        }
+
+    }
+
+    const deleteTicket = async (id) =>{
+        try {
+            setLoading(true);
+            await deleteTicketApi(id, auth.token);
+            setLoading(false)
+        } catch (error) {
+            setLoading(false);
+            setError(error);
+        }
+    }
+
 
     return {
         loading,
@@ -42,5 +67,7 @@ export function useTicket(){
         tickets,
         getTickets,
         addTicket,
+        updateTicket,
+        deleteTicket
     }
 }

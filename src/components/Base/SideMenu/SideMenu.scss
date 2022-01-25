@@ -1,17 +1,24 @@
 .side-menu-admin{
+    
     .ui.menu{
+        background-color: rgb(60, 60, 71) !important;
         width: 250px !important;
         overflow: hidden;
         padding-top: 4em;
         z-index: 99 !important;
     }
-
+    
     i.icon{
         float:initial !important;
         margin: 0 !important;
         margin-right: 10px !important;
     }
 
+    a.item{
+        color: mintcream !important;
+
+    }
+    
     .content{
         position: absolute;
         right: 0;
@@ -19,3 +26,4 @@
         width: calc(100% - 250px);
     }
 }
+

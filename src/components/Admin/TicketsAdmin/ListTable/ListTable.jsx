@@ -1,12 +1,12 @@
 import React from 'react';
 import { Divider, Segment, Icon, Table, Button } from 'semantic-ui-react'
+import './ListTable.scss'
 
 export  function ListTable() {
   return <>
     <Divider />
     <Segment basic textAlign='center' padded='very'>
         <Button
-            basic 
             color='violet' 
             content='Crear Ticket'
             icon='add'
