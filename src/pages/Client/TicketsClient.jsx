@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Loader, Modal } from 'semantic-ui-react'
+import { Loader } from 'semantic-ui-react'
 
 import {HeaderPage} from '../../components/Base/'
 import { TableTicket, AddEditTicket } from '../../components/Client/';
@@ -35,7 +35,6 @@ export function TicketsClient() {
     setTitleModal('Editar Ticket')
     setContentModal(<AddEditTicket ticket={ data } onClose={openCloseModal} onRefetch={onRefetch} />)
     openCloseModal();
-    console.log(data);
   }
 
   const onDeleteTicket = async (data) => {

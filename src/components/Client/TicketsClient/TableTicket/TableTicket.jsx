@@ -10,7 +10,7 @@ export function TableTicket(props) {
   
       <Table className='table-product-admin'>
         <Table.Header>
-          <Table.Row>
+          <Table.Row textAlign='center'>
             <Table.HeaderCell>Id</Table.HeaderCell>
             <Table.HeaderCell>Titulo</Table.HeaderCell>
             <Table.HeaderCell>Area</Table.HeaderCell>
@@ -21,7 +21,7 @@ export function TableTicket(props) {
         </Table.Header>
         <Table.Body>
           {map(tickets,(ticket, index)=>(
-            <Table.Row key={index}>
+            <Table.Row key={index} textAlign='center'>
                 <Table.Cell>{ticket.id}</Table.Cell>
                 <Table.Cell>{ticket.title}</Table.Cell>
                 <Table.Cell>{ticket.owner}</Table.Cell>
@@ -39,7 +39,7 @@ function Actions(props){
   const { ticket,updateTicket, onDeleteTicket } = props;
 
   return( 
-    <Table.Cell textAlign='right'>
+    <Table.Cell textAlign='center'>
       <Button icon onClick={()=> updateTicket(ticket)}>
           <Icon name='edit outline' />
       </Button>

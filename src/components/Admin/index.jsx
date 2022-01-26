@@ -1,1 +1,2 @@
-export * from './TicketsAdmin'
+export * from './TicketsAdmin';
+export * from './Users';

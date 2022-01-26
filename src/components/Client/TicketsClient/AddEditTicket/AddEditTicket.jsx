@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form,TextArea, Image, Button, Divider } from 'semantic-ui-react'
+import { Form,TextArea, Button, Divider } from 'semantic-ui-react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify'
