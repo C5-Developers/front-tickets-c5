@@ -1,8 +1,10 @@
-import { BASE_API } from '../utils/constants'
+import { BASE_API } from '../utils/constants';
 
-export async function getTicketsApi(){
+
+
+export async function getTicketsApi(_id_user){
     try {
-        const url = `${BASE_API}/api/tickets/`;
+        const url = `${BASE_API}/api/tickets/?created_by=${_id_user}`;
         const response = await fetch(url);
         const result = await response.json()
         return result;
@@ -11,16 +13,20 @@ export async function getTicketsApi(){
     }
 }
 
-export async function addTicketApi(data, token){
+export async function addTicketApi(data, token, id_user){
     try{
+        const formData = new FormData();
+        formData.append('title',data.title);
+        formData.append('description',data.description);
+        formData.append('file',data.file);
+        formData.append('created_by',id_user);
         const url = `${BASE_API}/api/tickets/`;
         const params = {
             method: 'POST',
             headers:{
                     Authorization:`Bearer ${token}`,
-                    'Content-Type': 'application/json'
                 },
-            body: JSON.stringify(data),
+            body: formData,
         };
         const response = await fetch(url,params);
         const result = await response.json();
@@ -32,16 +38,18 @@ export async function addTicketApi(data, token){
 
 export async function updateTicketApi(id, data, token ){
 
-    console.log(id);
     try {
+        const formData = new FormData();
+        formData.append('title',data.title);
+        formData.append('description',data.description);
+        formData.append('file',data.file);
         const url = `${BASE_API}/api/tickets/${id}/`;
         const params = {
             method: 'PATCH',
             headers:{
                 Authorization:`Bearer ${token}`,
-                'Content-Type': 'application/json'
             },
-        body: JSON.stringify(data),
+            body: formData,
         };
         const response = await fetch(url,params);
         const result = await response.json();

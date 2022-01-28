@@ -10,9 +10,12 @@ export function useTicket(){
     const { auth } = useAuth();
 
     const getTickets = async () => {
+
+        console.log(auth);
+
         try {
             setLoading(true);
-            const response = await getTicketsApi();
+            const response = await getTicketsApi(auth.me.id);
             setLoading(false);
             setTickets(response);
         } catch (error) {
@@ -25,7 +28,7 @@ export function useTicket(){
 
         try {
             setLoading(true);
-            await addTicketApi(data, auth.token );
+            await addTicketApi(data, auth.token, auth.me.id );
             setLoading(false);
             
         } catch (error) {

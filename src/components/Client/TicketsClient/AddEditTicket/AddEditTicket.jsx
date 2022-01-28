@@ -1,5 +1,7 @@
-import React from 'react';
-import { Form,TextArea, Button, Divider } from 'semantic-ui-react'
+import React, { useCallback, useState } from 'react';
+import { Form,TextArea, Button, Divider, Image } from 'semantic-ui-react'
+import {useDropzone} from 'react-dropzone'
+
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify'
@@ -11,7 +13,7 @@ import {useTicket} from '../../../../hooks';
 export function AddEditTicket(props) {
 
   const { onClose, onRefetch, ticket } = props; 
-
+  const [previewImage, setPreviewImage] = useState(ticket ? ticket?.file : null);
   const { addTicket, updateTicket } = useTicket();
 
   const toastConfig = {
@@ -59,8 +61,21 @@ export function AddEditTicket(props) {
     }
   })
 
+  const onDrop = useCallback(async (acceptedFile)=>{
+    const file = acceptedFile[0];
+    await formik.setFieldValue('file', file);
+    setPreviewImage(URL.createObjectURL(file))
+  },[])
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: 'image/jpeg, image/png',
+    noKeybard: true,
+    multiple:false,
+    onDrop
+
+  })
+
   return <div>
-      <h1>AddEditTicket</h1>
       <Form className='client-edit-ticket' onSubmit={formik.handleSubmit}>
         <Form.Input 
           name='title' 
@@ -76,6 +91,11 @@ export function AddEditTicket(props) {
           onChange={formik.handleChange}
           error={formik.errors.description}
           />
+          <Button type='button'fluid { ...getRootProps() }  color={formik.errors.file && 'red'}>
+           {previewImage ? 'Cambiar Imagen' : 'Subir Imagen'}
+          </Button>
+          <input { ...getInputProps() }/>
+          <Image name='file' src={previewImage}/>
         <Divider />
         <Button type='submit' primary fluid content={ticket ? 'Editar': 'Crear'} />
       </Form>
@@ -86,6 +106,7 @@ function initialValues(ticket){
   return {
     title:ticket?.title || '',
     description:ticket?.description || '',
+    file: ticket?.file || ''
   }
 }
 
@@ -93,6 +114,7 @@ function newSchema(){
   return{
     title:Yup.string().required('Titulo es campo obligatorio'),
     description:Yup.string().required('Descripcion es campo obligatorio'),
+    file: Yup.string()
   }
 }
 
@@ -100,5 +122,6 @@ function updateSchema(){
   return{
     title:Yup.string().required('Titulo es campo obligatorio'),
     description:Yup.string().required('Descripcion es campo obligatorio'),
+    file: Yup.string()
   }
 }
