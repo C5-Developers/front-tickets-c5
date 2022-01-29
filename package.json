@@ -1,5 +1,6 @@
 {
   "name": "app",
+  "homepage": "https://zapopan.sigpol.com/react/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
