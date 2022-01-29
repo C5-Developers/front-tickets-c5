@@ -1,8 +1,12 @@
 import React from 'react';
 import { Divider, Segment, Icon, Table, Button } from 'semantic-ui-react'
 import './ListTable.scss'
+import { map } from 'lodash'
 
-export  function ListTable() {
+export  function ListTable(props) {
+
+  const { tickets } = props;  
+
   return <>
     <Divider />
     <Segment basic textAlign='center' padded='very'>
@@ -15,36 +19,45 @@ export  function ListTable() {
             />
     </Segment>
 
-    <Table color='blue'>
+    <Table className='table-product-admin'>
         <Table.Header>
-        <Table.Row>
-            <Table.HeaderCell>Ticket</Table.HeaderCell>
-            <Table.HeaderCell>Estatus</Table.HeaderCell>
-            <Table.HeaderCell>Fecha</Table.HeaderCell>
-        </Table.Row>
+          <Table.Row textAlign='center'>
+            <Table.HeaderCell>Id</Table.HeaderCell>
+            <Table.HeaderCell>Titulo</Table.HeaderCell>
+            <Table.HeaderCell>Area</Table.HeaderCell>
+            <Table.HeaderCell>Asignado</Table.HeaderCell>
+            <Table.HeaderCell>Estado</Table.HeaderCell>
+            <Table.HeaderCell>Acciones</Table.HeaderCell>
+          </Table.Row>
         </Table.Header>
         <Table.Body>
-        <Table.Row positive>
-            <Table.Cell>0001</Table.Cell>
-            <Table.Cell>En Proceso  <Icon name='edit outline' /></Table.Cell>
-            <Table.Cell>21/02/2022</Table.Cell>
-        </Table.Row>
-        <Table.Row negative>
-            <Table.Cell >0002</Table.Cell>
-            <Table.Cell>Finalizado  <Icon name='check circle outline' /></Table.Cell>
-            <Table.Cell>24/12/2021</Table.Cell>
-        </Table.Row>
-        <Table.Row negative>
-            <Table.Cell >0003</Table.Cell>
-            <Table.Cell>Finalizado  <Icon name='check circle outline' /></Table.Cell>
-            <Table.Cell>25/12/2021</Table.Cell>
-        </Table.Row>
-        <Table.Row negative>
-            <Table.Cell >0004</Table.Cell>
-            <Table.Cell>Finalizado  <Icon name='check circle outline' /></Table.Cell>
-            <Table.Cell>28/12/2021</Table.Cell>
-        </Table.Row>
+          {map(tickets,(ticket, index)=>(
+            <Table.Row key={index} textAlign='center'>
+                <Table.Cell>{ticket.id}</Table.Cell>
+                <Table.Cell>{ticket.title}</Table.Cell>
+                <Table.Cell>{ticket.owner}</Table.Cell>
+                <Table.Cell>{ticket.assigned_to}</Table.Cell>
+                <Table.Cell>{ticket.status}</Table.Cell>
+                <Actions ticket={ ticket }/>
+            </Table.Row>
+          ))}
         </Table.Body>
     </Table>
   </>;
 }
+
+function Actions(props){
+    // const { ticket } = props;
+  
+    return( 
+      <Table.Cell textAlign='center'>
+        <Button icon onClick={()=> console.log('asignar ticket')}>
+            <Icon name='share' />
+        </Button>
+        <Button icon negative onClick={()=> console.log('cancelar ticket')}>
+            <Icon name='cancel' />
+        </Button>
+      </Table.Cell>
+    )
+  }
+  

@@ -26,12 +26,20 @@ function MenuLeft(props){
             <Menu.Item as={Link} to={"/"} active={pathname === "/"}>
                 <Icon name='home' /> Home
             </Menu.Item>
+            {/* Si es parte del staff(administrador) Se muestra el path Usuarios */}
+            { auth.me?.is_staff && (
+                <Menu.Item as={Link} to={"/admin/users"} active={pathname === "/admin/users"}>
+                    <Icon name='users' /> Usuarios
+                </Menu.Item>
+            )}
 
-            <Menu.Item as={Link} to={"/admin/tickets"} active={pathname === "/admin/tickets"}>
-                <Icon name='ticket alternate' /> Tickets - Admin
-            </Menu.Item>
+            { auth.me?.is_staff && (
+                <Menu.Item as={Link} to={"/admin/tickets"} active={pathname === "/admin/tickets"}>
+                    <Icon name='ticket alternate' /> Tickets - Admin
+                </Menu.Item>
+             )}
 
-            <Menu.Item as={Link} to={"/tickets"} active={pathname === "/admin/tickets"}>
+            <Menu.Item as={Link} to={"/tickets"} active={pathname === "/tickets"}>
                 <Icon name='ticket alternate' /> Tickets - Client
             </Menu.Item>
 
@@ -43,12 +51,6 @@ function MenuLeft(props){
                 <Icon name='list' /> Catalogos
             </Menu.Item> */}
 
-            {/* Si es parte del staff(administrador) Se muestra el path Usuarios */}
-            { auth.me?.is_staff && (
-                <Menu.Item as={Link} to={"/admin/users"} active={pathname === "/admin/users"}>
-                    <Icon name='users' /> Usuarios
-                </Menu.Item>
-            )}
 
         </Menu>
 

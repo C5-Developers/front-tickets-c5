@@ -1,5 +1,6 @@
 import React from 'react';
 import {Icon, Menu} from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import logoTopNav from '../../../assets/logo_top_nav.png'
 import { useAuth } from '../../../hooks';
 import "./TopMenu.scss";
@@ -15,7 +16,6 @@ export function TopMenu() {
         return auth.me?.email;
     }
 
-    console.log(auth);
     return (
         <Menu fixed='top' className='top-menu-admin'>
             <Menu.Item className='top-menu-admin__logo'>
@@ -26,7 +26,7 @@ export function TopMenu() {
                 <Menu.Item>
                     <b> { renderName()} </b>
                 </Menu.Item>
-                <Menu.Item onClick={logout}>
+                <Menu.Item as={Link} to={"/"} onClick={logout}>
                     <Icon name='sign-out'></Icon>
                 </Menu.Item>
             </Menu.Menu>

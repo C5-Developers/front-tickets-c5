@@ -2,6 +2,9 @@ import React, { useState, useEffect, createContext } from 'react'
 import { setToken, getToken, removeToken } from '../api/token';
 import { useUser } from '../hooks';
 
+
+
+
 export const AuthContext = createContext({
     auth: undefined,
     login: () => null,
@@ -12,6 +15,7 @@ export function AuthProvider(props) {
     const { children } = props;
     const [auth, setAuth] = useState(undefined)
     const { getMe } = useUser();
+
 
     useEffect(() => {
         (async()=>{
@@ -37,7 +41,6 @@ export function AuthProvider(props) {
 
     const logout = () =>{
         if (auth) {
-
             removeToken();
             setAuth(null);
             
