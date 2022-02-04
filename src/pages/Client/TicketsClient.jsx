@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Loader } from 'semantic-ui-react'
 
 import {HeaderPage} from '../../components/Base/'
-import { TableTicket, AddEditTicket } from '../../components/Client/';
+import { TableTicket, AddEditTicketForm } from '../../components/Client/TicketsClient/';
 import { ModalBasic } from '../../components/Base/'
 import { useTicket } from '../../hooks/';
 
@@ -27,13 +27,13 @@ export function TicketsClient() {
 
   const addTicket= () => {
     setTitleModal('Nuevo Ticket');
-    setContentModal(<AddEditTicket onClose={openCloseModal} onRefetch={onRefetch} />)
+    setContentModal(<AddEditTicketForm onClose={openCloseModal} onRefetch={onRefetch} />)
     openCloseModal();
   }
 
   const updateTicket = (data) => {
     setTitleModal('Editar Ticket')
-    setContentModal(<AddEditTicket ticket={ data } onClose={openCloseModal} onRefetch={onRefetch} />)
+    setContentModal(<AddEditTicketForm ticket={ data } onClose={openCloseModal} onRefetch={onRefetch} />)
     openCloseModal();
   }
 

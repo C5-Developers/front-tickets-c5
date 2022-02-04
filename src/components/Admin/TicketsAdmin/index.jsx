@@ -1,2 +1,5 @@
 export * from './Dashboard'
-export * from './ListTable'
+export * from './AssignTicketTable'
+export * from './TableSeguimientos'
+export * from './ModaListadoSeguimientos'
+export * from './AssignTicketForm'

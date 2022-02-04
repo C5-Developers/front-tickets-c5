@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import { Loader } from 'semantic-ui-react';
-import { TableUsers, AddEditUser } from '../../components/Admin/';
+import { TableUsers, AddEditUserForm } from '../../components/Admin/';
 import { HeaderPage } from '../../components/Base/HeaderPage/';
 import { ModalBasic } from '../../components/Base/ModalBasic/';
 
@@ -23,13 +23,13 @@ export function UsersAdmin() {
     
     const addUser = () => {
         setTitleModal('Nuevo Usuario');
-        setContentModal(<AddEditUser onClose={openCloseModal} onRefetch ={onRefetch}/>);
+        setContentModal(<AddEditUserForm onClose={openCloseModal} onRefetch ={onRefetch}/>);
         openCloseModal();
     }
 
     const updateUser = (data) => {
         setTitleModal('Editar Usuario');
-        setContentModal(<AddEditUser onClose={openCloseModal} onRefetch ={onRefetch} user={data}/>);
+        setContentModal(<AddEditUserForm onClose={openCloseModal} onRefetch ={onRefetch} user={data}/>);
         openCloseModal();
     }
 

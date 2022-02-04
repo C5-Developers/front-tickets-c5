@@ -5,9 +5,9 @@ import * as Yup from 'yup';
 import { useUser } from '../../../../hooks';
 import { toast } from 'react-toastify' 
 
-import './AddEditUser.scss';
+import './AddEditUserForm.scss';
 
-export function AddEditUser(props) {
+export function AddEditUserForm(props) {
 
     const { onClose,onRefetch, user } = props;
     const { addUser, updateUser } = useUser();

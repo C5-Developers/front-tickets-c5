@@ -68,6 +68,25 @@ export async function getUsersApi(token){
     }
 }
 
+export async function getUsersStaffApi(token){
+    try {
+        
+        const url = `${BASE_API}/api/users/?is_staff=1`;
+        const params = {
+            headers:{
+                Authorization:`Bearer ${token}`,
+            }
+        }
+
+        const response = await fetch(url,params);
+        const result = await response.json()
+        return result;
+        
+    } catch (error) {
+        throw error;
+    }
+}
+
 export async function addUserApi(data,token){
     try {
 

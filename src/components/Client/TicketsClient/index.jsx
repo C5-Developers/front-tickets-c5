@@ -1,2 +1,2 @@
 export * from './TableTicket';
-export * from './AddEditTicket';
+export * from './AddEditTicketForm';

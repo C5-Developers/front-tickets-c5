@@ -4,29 +4,29 @@ import {useDropzone} from 'react-dropzone'
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
 
-import './AddEditTicket.scss';
+import './AddEditTicketForm.scss';
 
 import {useTicket} from '../../../../hooks';
 
-export function AddEditTicket(props) {
+export function AddEditTicketForm(props) {
 
   const { onClose, onRefetch, ticket } = props; 
   const [previewImage, setPreviewImage] = useState(ticket ? ticket?.file : null);
   const { addTicket, updateTicket } = useTicket();
 
   const toastConfig = {
-                      className: 'black-background',
-                      position: "top-center",
-                      autoClose: 2500,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: false,
-                      draggable: true,
-                      progress: undefined
-                      
-                    };
+    className: 'black-background',
+    position: "top-center",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined
+    
+  };
     
   
   const formik = useFormik({

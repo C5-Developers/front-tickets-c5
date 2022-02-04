@@ -1,11 +1,15 @@
 .side-menu-admin{
     
-    .ui.menu{
+    .menu-lateral{
         background-color: rgb(60, 60, 71) !important;
         width: 250px !important;
         overflow: hidden;
         padding-top: 4em;
         z-index: 99 !important;
+        >a.item{
+            color: rgb(255, 255, 255) !important;
+    
+        }
     }
     
     i.icon{
@@ -14,10 +18,7 @@
         margin-right: 10px !important;
     }
 
-    a.item{
-        color: mintcream !important;
-
-    }
+   
     
     .content{
         position: absolute;

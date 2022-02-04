@@ -29,7 +29,6 @@ export function Dashboard() {
                             floating
                             options={options}
                             fluid
-                            
                             />
                     </Grid.Column>
                 </Grid.Row>
