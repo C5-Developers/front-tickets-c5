@@ -5,7 +5,7 @@ import { map } from 'lodash'
 
 export function TableTicket(props) {
   const { tickets, updateTicket, onDeleteTicket } = props;
-  // console.log(tickets);
+  console.log(tickets);
   return (
   <>
       

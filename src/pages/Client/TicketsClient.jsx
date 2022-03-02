@@ -7,6 +7,7 @@ import { ModalBasic } from '../../components/Base/'
 import { useTicket } from '../../hooks/';
 
 import { toast } from 'react-toastify'
+import DataTableTicket from '../../components/Client/TicketsClient/DataTableTicket/DataTableTicket';
 
 
 export function TicketsClient() {
@@ -20,6 +21,7 @@ export function TicketsClient() {
   const { loading, tickets, getTickets, deleteTicket } = useTicket();
 
   useEffect(()=>getTickets(),[refetch]);
+
 
 
   const openCloseModal = () => setShowModal((prev) => !prev)
@@ -68,6 +70,7 @@ export function TicketsClient() {
           updateTicket={ updateTicket } 
           onDeleteTicket={ onDeleteTicket }
           />
+        // <DataTableTicket />
         )}
         <ModalBasic 
           show={showModal} 
